@@ -85,44 +85,30 @@ app.get('/everything', (req, res) => {
 	let data = { users: [], tickets: [], organizations: [] };
 	let value = req.query.value;
 
-	for (let user of users) {
-		for (let prop in user) {
-			let filterTypeFunction = filterFunction.getFilterFunction(
-				User[prop]
-			);
-			if (filterTypeFunction(value, user[prop])) {
-				data.users.push(user);
-				break;
-			}
-		}
-	}
+	filterByUserInput(users, User, value, data.users);
 
-	for (let ticket of tickets) {
-		for (let prop in ticket) {
-			let filterTypeFunction = filterFunction.getFilterFunction(
-				Ticket[prop]
-			);
-			if (filterTypeFunction(value, ticket[prop])) {
-				data.tickets.push(ticket);
-				break;
-			}
-		}
-	}
+	filterByUserInput(tickets, Ticket, value, data.tickets);
 
-	for (let organization of organizations) {
-		for (let prop in organization) {
-			let filterTypeFunction = filterFunction.getFilterFunction(
-				Organization[prop]
-			);
-			if (filterTypeFunction(value, organization[prop])) {
-				data.organizations.push(organization);
-				break;
-			}
-		}
-	}
+	filterByUserInput(organizations, Organization, value, data.organization);
 
 	res.send(data);
 });
+
+
+const filterByUserInput = (data, model, value, output) => {
+	for (let element of data) {
+		for (let prop in element) {
+			let filterTypeFunction = filterFunction.getFilterFunction(
+				model[prop]
+			);
+			if (filterTypeFunction(value, element[prop])) {
+				output.push(element);
+				break;
+			}
+		}
+	}
+
+}
 
 const prepareFilteringMap = (keys, table, query) => {
 	return keys.map(property => {
