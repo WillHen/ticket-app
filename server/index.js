@@ -31,6 +31,51 @@ app.get('/tickets', (req, res) => {
 	res.send(data);
 });
 
+app.get('/general', (req, res) => {
+	let dataKeys = Object.keys(req.query);
+	let data = [];
+
+	let hasValidTicketFields = dataKeys.every(property => {
+		return filterFunction.getFilterType('tickets', property);
+	});
+
+	let hasValidUserFields = dataKeys.every(property => {
+		return filterFunction.getFilterType('users', property);
+	});
+
+	let hasValidOrganizationFields = dataKeys.every(property => {
+		return filterFunction.getFilterType('organizations', property);
+	});
+
+	if (hasValidTicketFields) {
+		let filterTicketMap = prepareFilteringMap(
+			dataKeys,
+			'tickets',
+			req.query
+		);
+		let ticketData = filterData(tickets, filterTicketMap);
+		data = [...data, ...ticketData];
+	}
+
+	if (hasValidUserFields) {
+		let filterUserMap = prepareFilteringMap(dataKeys, 'users', req.query);
+		let userData = filterData(users, filterUserMap);
+		data = [...data, ...userData];
+	}
+
+	if (hasValidOrganizationFields) {
+		let filterOrganizationMap = prepareFilteringMap(
+			dataKeys,
+			'organizations',
+			req.query
+		);
+		let OrganizationData = filterData(organizations, filterOrganizationMap);
+		data = [...data, ...OrganizationData];
+	}
+
+	res.send(data);
+});
+
 const prepareFilteringMap = (keys, table, query) => {
 	return keys.map(property => {
 		let type = filterFunction.getFilterType(table, property);
