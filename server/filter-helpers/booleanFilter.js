@@ -1,6 +1,6 @@
 module.exports = {
 	filter: (userInput, dataValue) => {
-		if (!userInput.length) {
+		if (userInput === undefined || !userInput.length) {
 			return true;
 		}
 		if (userInput !== 'true' && userInput !== 'false') {

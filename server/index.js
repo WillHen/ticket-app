@@ -7,6 +7,11 @@ const tickets = require('./data/tickets.json');
 const organizations = require('./data/organizations.json');
 const filterFunction = require('./filter-helpers/getFilterFunction.js');
 
+const User = require('./data/models/user.model.js').User;
+const Ticket = require('./data/models/ticket.model.js').Ticket;
+const Organization = require('./data/models/organization.model.js')
+	.Organization;
+
 app.get('/users', (req, res) => {
 	let dataKeys = Object.keys(req.query);
 	let filterMap = prepareFilteringMap(dataKeys, 'users', req.query);
@@ -71,6 +76,49 @@ app.get('/general', (req, res) => {
 		);
 		let OrganizationData = filterData(organizations, filterOrganizationMap);
 		data = [...data, ...OrganizationData];
+	}
+
+	res.send(data);
+});
+
+app.get('/everything', (req, res) => {
+	let data = { users: [], tickets: [], organizations: [] };
+	let value = req.query.value;
+
+	for (let user of users) {
+		for (let prop in user) {
+			let filterTypeFunction = filterFunction.getFilterFunction(
+				User[prop]
+			);
+			if (filterTypeFunction(value, user[prop])) {
+				data.users.push(user);
+				break;
+			}
+		}
+	}
+
+	for (let ticket of tickets) {
+		for (let prop in ticket) {
+			let filterTypeFunction = filterFunction.getFilterFunction(
+				Ticket[prop]
+			);
+			if (filterTypeFunction(value, ticket[prop])) {
+				data.tickets.push(ticket);
+				break;
+			}
+		}
+	}
+
+	for (let organization of organizations) {
+		for (let prop in organization) {
+			let filterTypeFunction = filterFunction.getFilterFunction(
+				Organization[prop]
+			);
+			if (filterTypeFunction(value, organization[prop])) {
+				data.organizations.push(organization);
+				break;
+			}
+		}
 	}
 
 	res.send(data);
