@@ -10,6 +10,10 @@
     "nodemon": "^1.19.1"
   },
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^24.8.0"
   }
 }
