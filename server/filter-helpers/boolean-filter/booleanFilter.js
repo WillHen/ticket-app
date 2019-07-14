@@ -9,6 +9,8 @@ module.exports = {
 
 		userInput = userInput === 'true' ? true : false;
 
+
+
 		return userInput === dataValue;
 
 	}

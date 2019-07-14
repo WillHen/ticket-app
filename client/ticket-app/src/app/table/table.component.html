@@ -3,7 +3,7 @@
 
   	<ng-container *ngFor="let col of displayedColumns" [matColumnDef]="col">
 	    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ col }} 
-	    	<input   [hidden]="dataType[col] === 'date'" class="filter-input" id={{col}} (keyup)="queryData($event, col)" />  
+	    	<input placeholder="Type to filter..."  [hidden]="dataType[col] === 'date'" class="filter-input" id={{col}} (keyup)="queryData($event, col)" />  
 
 	    <span [hidden]="dataType[col] !== 'date'">
 			<input matInput [matDatepicker]="picker" placeholder="Choose a date" (dateChange)="queryDataDate(col, $event)" #filterDateInput>

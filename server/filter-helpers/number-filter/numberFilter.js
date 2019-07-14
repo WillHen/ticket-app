@@ -6,6 +6,6 @@ module.exports = {
 		if (dataValue === undefined) {
 			return false;
 		}
-		return !userInput.length ? true : dataValue.toString().includes(userInput.toString());
+		return !userInput.toString().length ? true : dataValue.toString().includes(userInput.toString());
 	}
 };

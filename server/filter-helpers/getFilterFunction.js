@@ -2,11 +2,11 @@ const Users = require('../data/models/user.model.js').User;
 const Organizations = require('../data/models/organization.model.js').Organization;
 const Tickets = require('../data/models/ticket.model').Ticket;
 
-const stringFilter = require('./stringFilter.js').filter;
-const arrayFilter = require('./arrayFilter.js').filter;
-const booleanFilter = require('./booleanFilter.js').filter;
-const numberFilter = require('./numberFilter.js').filter;
-const dateFilter = require('./dateFilter.js').filter;
+const stringFilter = require('./string-filter/stringFilter.js').filter;
+const arrayFilter = require('./array-filter/arrayFilter.js').filter;
+const booleanFilter = require('./boolean-filter/booleanFilter.js').filter;
+const numberFilter = require('./number-filter/numberFilter.js').filter;
+const dateFilter = require('./date-filter//dateFilter.js').filter;
 
 module.exports = {
 	getFilterType: (table, property) => {
