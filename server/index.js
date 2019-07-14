@@ -13,7 +13,7 @@ const Organization = require('./data/models/organization.model.js')
 	.Organization;
 
 app.use(function(req, res, next) {
-	
+
 	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
 
 	res.setHeader(
@@ -147,4 +147,4 @@ const filterData = (dataSet, filterMap) => {
 	});
 };
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, () => console.log(`app listening on port ${port}!`));

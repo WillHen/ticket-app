@@ -4,6 +4,10 @@ module.exports = {
 		if (!userInput || !userInput.length) {
 			return true;
 		}
+
+		if (dataValue === undefined) {
+			return false;
+		}
 		let parsedDateString = dataValue.split('T')[0];
 
 		let inputDate = new Date(userInput.split('T')[0]);

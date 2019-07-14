@@ -14,7 +14,7 @@ module.exports = {
 		organization_id: 'number',
 		tags: 'Array',
 		has_incidents: 'boolean',
-		due_at: 'string',
+		due_at: 'date',
 		via: 'string'
 	}
 };
