@@ -3,6 +3,9 @@ module.exports = {
 		if (userInput === undefined) {
 			return true;
 		}
-		return !userInput.length ? true :  userInput === dataValue;
+		if(!dataValue) {
+			return false;
+		}
+		return !userInput.length ? true :  dataValue.toLowerCase().includes(userInput.toLowerCase());
 	}
 };

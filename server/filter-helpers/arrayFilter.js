@@ -3,6 +3,6 @@ module.exports = {
 		if (userInput === undefined) {
 			return true;
 		}
-		return !userInput.length ? true : dataValue.indexOf(userInput) > -1;
+		return !userInput.length ? true : dataValue.some(element => element.includes(userInput));
 	}
 }

@@ -7,7 +7,9 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
-    "nodemon": "^1.19.1"
+    "inquirer": "^6.5.0",
+    "nodemon": "^1.19.1",
+    "table": "^5.4.1"
   },
   "scripts": {
     "start": "nodemon index.js",

@@ -1,0 +1,52 @@
+export const DataTypes = {
+	Users: {
+		_id: 'number',
+		url: 'string',
+		external_id: 'string',
+		name: 'string',
+		alias: 'string',
+		created_at: 'date',
+		active: 'boolean',
+		verified: 'boolean',
+		shared: 'boolean',
+		locale: 'string',
+		timezone: 'string',
+		last_login_at: 'date',
+		email: 'string',
+		phone: 'string',
+		signature: 'string',
+		organization_id: 'number',
+		tags: 'Array',
+		suspended: 'boolean',
+		role: 'string'
+	},
+	Tickets: {
+		_id: 'string',
+		url: 'string',
+		external_id: 'string',
+		created_at: 'date',
+		type: 'string',
+		subject: 'string',
+		description: 'string',
+		priority: 'string',
+		status: 'string',
+		submitter_id: 'number',
+		assignee_id: 'number',
+		organization_id: 'number',
+		tags: 'Array',
+		has_incidents: 'boolean',
+		due_at: 'date',
+		via: 'string'
+	},
+	Organizations: {
+		_id: 'number',
+		url: 'string',
+		external_id: 'string',
+		name: 'string',
+		domain_names: 'Array',
+		created_at: 'date',
+		details: 'string',
+		shared_tickets: 'boolean',
+		tags: 'Array'
+	}
+};

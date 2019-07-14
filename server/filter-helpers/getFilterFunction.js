@@ -6,6 +6,7 @@ const stringFilter = require('./stringFilter.js').filter;
 const arrayFilter = require('./arrayFilter.js').filter;
 const booleanFilter = require('./booleanFilter.js').filter;
 const numberFilter = require('./numberFilter.js').filter;
+const dateFilter = require('./dateFilter.js').filter;
 
 module.exports = {
 	getFilterType: (table, property) => {
@@ -39,6 +40,9 @@ module.exports = {
 				break;
 			case 'number':
 				filterFunction = numberFilter;
+				break;
+			case 'date':
+				filterFunction = dateFilter;
 				break;
 			default:
 				filterFunction = () =>{

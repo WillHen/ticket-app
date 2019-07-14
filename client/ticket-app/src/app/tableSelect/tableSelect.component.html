@@ -1,0 +1,8 @@
+<div>
+	<h3 class="tabel-select-label">Select Table to filter</h3>
+	<mat-select (selectionChange)="setTable($event)">
+	    <mat-option *ngFor="let table of tables" [value]="table">
+	      {{table}}
+	    </mat-option> 
+	  </mat-select>
+</div>

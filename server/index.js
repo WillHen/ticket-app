@@ -12,6 +12,30 @@ const Ticket = require('./data/models/ticket.model.js').Ticket;
 const Organization = require('./data/models/organization.model.js')
 	.Organization;
 
+app.use(function(req, res, next) {
+	// Website you wish to allow to connect
+	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+
+	// Request methods you wish to allow
+	res.setHeader(
+		'Access-Control-Allow-Methods',
+		'GET, POST, OPTIONS, PUT, PATCH, DELETE'
+	);
+
+	// Request headers you wish to allow
+	res.setHeader(
+		'Access-Control-Allow-Headers',
+		'X-Requested-With,content-type'
+	);
+
+	// Set to true if you need the website to include cookies in the requests sent
+	// to the API (e.g. in case you use sessions)
+	res.setHeader('Access-Control-Allow-Credentials', true);
+
+	// Pass to next layer of middleware
+	next();
+});
+
 app.get('/users', (req, res) => {
 	let dataKeys = Object.keys(req.query);
 	let filterMap = prepareFilteringMap(dataKeys, 'users', req.query);
@@ -94,7 +118,6 @@ app.get('/everything', (req, res) => {
 	res.send(data);
 });
 
-
 const filterByUserInput = (data, model, value, output) => {
 	for (let element of data) {
 		for (let prop in element) {
@@ -107,8 +130,7 @@ const filterByUserInput = (data, model, value, output) => {
 			}
 		}
 	}
-
-}
+};
 
 const prepareFilteringMap = (keys, table, query) => {
 	return keys.map(property => {

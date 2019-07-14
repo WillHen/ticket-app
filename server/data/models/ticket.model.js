@@ -3,7 +3,7 @@ module.exports = {
 		_id: 'string',
 		url: 'string',
 		external_id: 'string',
-		created_at: 'string',
+		created_at: 'date',
 		type: 'string',
 		subject: 'string',
 		description: 'string',
