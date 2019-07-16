@@ -20,6 +20,7 @@ export class TableComponent implements OnInit {
 	@Input('data-type') dataType: any;
 	@Input('query-data-subject') queryDataSubject: BehaviorSubject<any>;
 	@Input('current-property-type') currentPropertyType: any;
+	@Input('data-map') dataMap: Map<string, string>;
 	
 	constructor() {}
 
@@ -56,5 +57,23 @@ export class TableComponent implements OnInit {
 		} else {
 			this.queryDataSubject.next({ value: '', column: column });
 		}
+	}
+
+	/**
+	 * When the user is filtering with a column and they wish to filter by if 
+	 * the column has no value.
+	 * @param {column} the current column they are filtering on.
+	 * @param {value} a string to indicate the user is filtering by isNull
+	 */
+	queryByisNull(column: string, value: string) {
+		let input = '';
+
+		if (this.dataMap.get(column) !== '@isNull@') {
+			input = '@isNull@'
+		}
+		this.queryDataSubject.next({
+			value: input,
+			column: column
+		});
 	}
 }

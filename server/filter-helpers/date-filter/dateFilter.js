@@ -5,6 +5,10 @@ module.exports = {
 			return true;
 		}
 
+		if (dataValue === undefined && userInput === '@isNull@') {
+			return true;
+		}
+
 		if (dataValue === undefined) {
 			return false;
 		}

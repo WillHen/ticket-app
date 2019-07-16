@@ -16,4 +16,8 @@ describe('date filter function', () => {
 	test('returns true when no userInput is present', () => {
 		expect(dateFilter(undefined, new Date().toISOString())).toBe(true);
 	});
+
+	test('returns true when user input is @isNull@ and no dataValue is present', () => {
+		expect(dateFilter('@isNull@', undefined)).toBe(true);
+	});
 });

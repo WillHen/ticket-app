@@ -40,6 +40,7 @@ describe('TableComponent', () => {
         fixture = TestBed.createComponent(TableComponent);
         component = fixture.componentInstance;
         component.queryDataSubject = new BehaviorSubject<any>('');
+        component.dataMap = new Map<string, string>();
         fixture.detectChanges();
     });
 
@@ -51,7 +52,7 @@ describe('TableComponent', () => {
         let mockEvent = {target: {value: 101}};
         let queryDataSubjectSpy = spyOn(component.queryDataSubject, 'next');
         component.queryData(mockEvent, '_id');
-        expect(queryDataSubjectSpy).toHaveBeenCalledWith({value: mockEvent.target.value, column: '_id'})
+        expect(queryDataSubjectSpy).toHaveBeenCalledWith({value: mockEvent.target.value, column: '_id'});
     });
 
     it('invoke next on queryDataSubject input when queryDataDate is called', () => {
@@ -59,6 +60,13 @@ describe('TableComponent', () => {
         let mockEvent: MatDatepickerInputEvent<Date>  = (<MatDatepickerInputEvent<Date>>{value: mockDate});
         let queryDataSubjectSpy = spyOn(component.queryDataSubject, 'next');
         component.queryDataDate('created_at', mockEvent );
-        expect(queryDataSubjectSpy).toHaveBeenCalledWith({value: "2019-07-14T00:00:00.000Z", column: 'created_at'})
+        expect(queryDataSubjectSpy).toHaveBeenCalledWith({value: "2019-07-14T00:00:00.000Z", column: 'created_at'});
+    });
+
+    it('invoke next on queryDataSubject input when queryByisNull is called', () => {
+        let mockValue = '@isNull@';
+        let queryDataSubjectSpy = spyOn(component.queryDataSubject, 'next');
+        component.queryByisNull('name', mockValue );
+        expect(queryDataSubjectSpy).toHaveBeenCalledWith({column: 'name', value: '@isNull@'})
     });
 });

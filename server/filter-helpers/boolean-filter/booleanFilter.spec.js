@@ -16,4 +16,9 @@ describe('boolean filter function', () => {
 	test('returns false when userInput is not equal to stringified true or false', () => {
 		expect(booleanFilter('John', true)).toBe(false);
 	});
+
+
+	test('returns true when user input is @isNull@ and no dataValue is present', () => {
+		expect(booleanFilter('@isNull@', undefined)).toBe(true);
+	});
 });

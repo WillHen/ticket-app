@@ -4,9 +4,20 @@
   	<ng-container *ngFor="let col of displayedColumns" [matColumnDef]="col">
 	    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ col }} 
 	    	<input placeholder="Type to filter..."  [hidden]="dataType[col] === 'date'" class="filter-input" id={{col}} (keyup)="queryData($event, col)" />  
+	    	<button 
+	    		[hidden]="dataType[col] === 'date'"
+	    		[ngClass]="{'is-null': dataMap.get(col) === '@isNull@' }" 
+	    		(click)="queryByisNull(col, 'isNull')">
+	    		Is blank
+	    	</button>
 
 	    <span [hidden]="dataType[col] !== 'date'">
 			<input matInput [matDatepicker]="picker" placeholder="Choose a date" (dateChange)="queryDataDate(col, $event)" #filterDateInput>
+			<button 
+	    		[ngClass]="{'is-null': dataMap.get(col) === '@isNull@' }" 
+	    		(click)="queryByisNull(col, 'isNull')">
+	    		Is blank
+	    	</button>
 			<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
 			<mat-datepicker #picker></mat-datepicker>
 	    </span>

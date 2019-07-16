@@ -77,5 +77,7 @@ describe('AppComponent', () => {
         ).and.returnValue(of(''))
 
         app.queryData('test');
+
+        expect(tableDataServiceGetUsersSpy).toHaveBeenCalled();
     });
 });

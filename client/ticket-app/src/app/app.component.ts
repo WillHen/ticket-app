@@ -73,6 +73,7 @@ export class AppComponent implements OnInit, OnDestroy {
 			.pipe(takeUntil(this.destroy$))
 			.subscribe((dataSearchInput: any) => {
 				this.dataMap.set(dataSearchInput.column, dataSearchInput.value);
+				this.dataMap = new Map(this.dataMap);
 				this.queryData();
 			});
 	}

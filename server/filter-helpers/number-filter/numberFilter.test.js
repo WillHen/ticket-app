@@ -16,4 +16,8 @@ describe('number filter function', () => {
 	test('returns false when user input is present but dataValue is not present', () => {
 		expect(numberFilter(1, undefined)).toBe(false);
 	});
+
+	test('returns true when user input is @isNull@ and no dataValue is present', () => {
+		expect(numberFilter('@isNull@', undefined)).toBe(true);
+	});
 });

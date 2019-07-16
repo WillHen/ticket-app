@@ -16,4 +16,8 @@ describe('string filter function', () => {
 	test('returns false when user input is present but dataValue is not present', () => {
 		expect(stringFilter('landon', undefined)).toBe(false);
 	});
+
+	test('returns true when user input is @isNull@ and no dataValue is present', () => {
+		expect(stringFilter('@isNull@', undefined)).toBe(true);
+	});
 });

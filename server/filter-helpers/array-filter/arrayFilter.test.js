@@ -13,4 +13,8 @@ describe('array filter function', () => {
 		expect(arrayFilter(undefined, [1,2,3,4])).toBe(true);
 	});
 
+	test('returns true when user input is @isNull@ and no dataValue is present', () => {
+		expect(arrayFilter('@isNull@', undefined)).toBe(true);
+	});
+
 });
