@@ -25,6 +25,13 @@ export class TableComponent implements OnInit {
 
 	ngOnInit() {}
 
+	/**
+	 * When the user starts typing on an input in the table, 
+	 * fire off an event to the root component to indicate which column
+	 * and which property to filter by.
+	 * @param {event} the user input
+	 * @param {column} the current column they are filtering on.
+	 */
 	queryData(event: any, column: string) {
 		this.queryDataSubject.next({
 			value: event.target.value,
@@ -32,6 +39,14 @@ export class TableComponent implements OnInit {
 		});
 	}
 
+
+	/**
+	 * When the user is filtering with a column that has a date picker,
+	 * parse the value correcrtly and send it to the root component
+	 * and the column to filter on.
+	 * @param {column} the current column they are filtering on.
+	 * @param {event} the user input, which in this case is a date.
+	 */
 	queryDataDate(column: string, event: MatDatepickerInputEvent<Date>): void {
 		if (event.value) {
 			this.queryDataSubject.next({

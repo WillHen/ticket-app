@@ -28,7 +28,10 @@ export class TableSelect implements OnInit {
 	constructor() {}
 
 	ngOnInit() {}
-
+	/**
+	 * Updates the tableChangeSubject behavior subject with the new table the user has selected.
+	 * @param {event} the event object from the select.
+	 */
 	setTable(event: any): void {
 		this.tableChangeSubject.next(event.value);
 	}

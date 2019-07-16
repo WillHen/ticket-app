@@ -53,7 +53,7 @@ describe('AppComponent', () => {
         );
     });
 
-    it('set data on the dataMap property when it recieves a value from querySubject subscription', () => {
+    it('shiuld set data on the dataMap property when it recieves a value from querySubject subscription', () => {
         const fixture = TestBed.createComponent(AppComponent);
         const app = fixture.debugElement.componentInstance;
 

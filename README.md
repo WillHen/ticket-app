@@ -64,6 +64,8 @@ From there run
 ng serve
 ```
 
+This will run the applicatio. on localhost:4200
+
 ## Running the tests
 
 For server tests, from dir /server run:
@@ -77,11 +79,4 @@ For client tests from dir /client/ticket-app run
 ```ng test```
 
 
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
 

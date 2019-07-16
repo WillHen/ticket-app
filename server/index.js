@@ -30,6 +30,10 @@ app.use(function(req, res, next) {
 	next();
 });
 
+
+/*
+ * Route to filter on the User table.
+ */
 app.get('/users', (req, res) => {
 	let dataKeys = Object.keys(req.query);
 	let filterMap = prepareFilteringMap(dataKeys, 'users', req.query);
@@ -38,6 +42,9 @@ app.get('/users', (req, res) => {
 	res.send(data);
 });
 
+/*
+ * Route to filter on the Organisations table.
+ */
 app.get('/organizations', (req, res) => {
 	let dataKeys = Object.keys(req.query);
 	let filterMap = prepareFilteringMap(dataKeys, 'organizations', req.query);
@@ -46,6 +53,9 @@ app.get('/organizations', (req, res) => {
 	res.send(data);
 });
 
+/*
+ * Route to filter on the tickets table.
+ */
 app.get('/tickets', (req, res) => {
 	let dataKeys = Object.keys(req.query);
 	let filterMap = prepareFilteringMap(dataKeys, 'tickets', req.query);
@@ -54,6 +64,11 @@ app.get('/tickets', (req, res) => {
 	res.send(data);
 });
 
+
+/*
+ * Route to filter on the all tables, with the filter value and
+ * columns supplied.
+ */
 app.get('/general', (req, res) => {
 	let dataKeys = Object.keys(req.query);
 	let data = [];
@@ -99,6 +114,9 @@ app.get('/general', (req, res) => {
 	res.send(data);
 });
 
+/*
+ * Route to filter on the all tables, with the filter value and no column supplied.
+ */
 app.get('/everything', (req, res) => {
 	let data = { users: [], tickets: [], organizations: [] };
 	let value = req.query.value;
@@ -112,6 +130,16 @@ app.get('/everything', (req, res) => {
 	res.send(data);
 });
 
+
+
+/*
+ * @param {data} the current table (set of data) we are filtering on.
+ * @param {model} the current model so we can get the filter function we need (ie string)
+ * @param {value} the current filter valeu the user has input.
+ * @param {output} the array which we will add data to if it passes the filter condition.
+ * This function is used to filter through tables with a user input regardless of column
+ * so it serves to allow the user to filter all tables.
+ */
 const filterByUserInput = (data, model, value, output) => {
 	for (let element of data) {
 		for (let prop in element) {
@@ -126,6 +154,15 @@ const filterByUserInput = (data, model, value, output) => {
 	}
 };
 
+
+/*
+ * @param {keys} the list of columns the user is filtering on.
+ * @param {table} the current data set which is being filtered.
+ * @param {query} the query object from the request, which includes
+ * the column and the input value from the user.
+ * @return {array} we return an array which contains the filter function we need to apply,
+ * as well as the value and column.
+ */
 const prepareFilteringMap = (keys, table, query) => {
 	return keys.map(property => {
 		let type = filterFunction.getFilterType(table, property);
@@ -137,6 +174,14 @@ const prepareFilteringMap = (keys, table, query) => {
 	});
 };
 
+
+/*
+ * @param {dataSet} the table (data) which we will filter
+ * @param {filterMap} the filters we need to apply on each element in the dataset.
+ * @return {array} we return an array wit the filtered data.
+ * In this function we loop over each element in the table. For each element (i.e a table or a user)
+ * we apply all the filters that the user has set. If each filter passes, we return that element.
+ */
 const filterData = (dataSet, filterMap) => {
 	return dataSet.filter(dataInstance => {
 		return filterMap.reduce((memo, type) => {
