@@ -15,10 +15,10 @@ Server: Node Express.js.
 
 To get set up and run the application, you will need to have a few things installed globally.
 
-On the server, for a package manager I am using yarn.
-
-
 Recommended Node version >= 11.14.0.
+
+
+On the server, for a package manager I am using yarn.
 
 With brew: 
 
@@ -64,7 +64,7 @@ From there run
 ng serve
 ```
 
-This will run the applicatio. on localhost:4200
+This will run the application on localhost:4200
 
 ## Running the tests
 
