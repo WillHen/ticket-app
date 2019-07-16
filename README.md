@@ -61,6 +61,11 @@ To start the client, from the root directory cd in to client/ticket-app.
 
 From there run 
 ```
+yarn
+```
+and then
+
+```
 ng serve
 ```
 
