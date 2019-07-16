@@ -1,0 +1,5 @@
+<button 
+	[ngClass]="{'is-null': dataMap.get(column) === '@isNull@' }" 
+	(click)="queryByisNull('isNull')">
+	Is blank
+</button>

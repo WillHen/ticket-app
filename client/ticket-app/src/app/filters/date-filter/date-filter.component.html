@@ -1,0 +1,13 @@
+<input matInput
+    id={{column}}
+	[matDatepicker]="picker" 
+	placeholder="Choose a date" 
+	(dateChange)="queryDataDate($event)" 
+	#filterDateInput>
+<mat-datepicker-toggle matSuffix #datePickerToggle [for]="picker"></mat-datepicker-toggle>
+<app-is-null 
+	[column]="column" 
+	[data-map]="dataMap" 
+	[query-data-subject]="queryDataSubject">
+</app-is-null>
+<mat-datepicker #picker></mat-datepicker>

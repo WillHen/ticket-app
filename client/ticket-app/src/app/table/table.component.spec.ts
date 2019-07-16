@@ -1,5 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DateFormatPipe } from '../dateFormatPipe/date-format.pipe';
+import { DateFilterComponent } from '../filters/date-filter/date-filter.component';
+import { IsNullComponent } from '../filters/is-null/is-null.component';
+import { InputFilterComponent } from '../filters/input-filter/input-filter.component'
+
 import { MomentModule } from 'ngx-moment';
 import { BehaviorSubject } from 'rxjs';
 
@@ -23,7 +27,7 @@ describe('TableComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [DateFormatPipe, TableComponent],
+            declarations: [DateFormatPipe, DateFilterComponent, IsNullComponent, InputFilterComponent, TableComponent],
             imports: [
                 MatInputModule,
                 MatSelectModule,
@@ -48,25 +52,4 @@ describe('TableComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('invoke next on queryDataSubject input when queryData is called', () => {
-        let mockEvent = {target: {value: 101}};
-        let queryDataSubjectSpy = spyOn(component.queryDataSubject, 'next');
-        component.queryData(mockEvent, '_id');
-        expect(queryDataSubjectSpy).toHaveBeenCalledWith({value: mockEvent.target.value, column: '_id'});
-    });
-
-    it('invoke next on queryDataSubject input when queryDataDate is called', () => {
-        let mockDate = new Date('2019-07-14');
-        let mockEvent: MatDatepickerInputEvent<Date>  = (<MatDatepickerInputEvent<Date>>{value: mockDate});
-        let queryDataSubjectSpy = spyOn(component.queryDataSubject, 'next');
-        component.queryDataDate('created_at', mockEvent );
-        expect(queryDataSubjectSpy).toHaveBeenCalledWith({value: "2019-07-14T00:00:00.000Z", column: 'created_at'});
-    });
-
-    it('invoke next on queryDataSubject input when queryByisNull is called', () => {
-        let mockValue = '@isNull@';
-        let queryDataSubjectSpy = spyOn(component.queryDataSubject, 'next');
-        component.queryByisNull('name', mockValue );
-        expect(queryDataSubjectSpy).toHaveBeenCalledWith({column: 'name', value: '@isNull@'})
-    });
 });

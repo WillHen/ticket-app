@@ -10,15 +10,26 @@ import {
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MomentModule } from 'ngx-moment';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { TableComponent } from './table/table.component';
 import { TableSelect } from './tableSelect/tableSelect.component';
 import { DateFormatPipe } from './dateFormatPipe/date-format.pipe';
-
+import { DateFilterComponent } from './filters/date-filter/date-filter.component';
+import { IsNullComponent } from './filters/is-null/is-null.component';
+import { InputFilterComponent } from './filters/input-filter/input-filter.component';
 
 @NgModule({
-	declarations: [AppComponent, TableComponent, TableSelect, DateFormatPipe],
+	declarations: [
+		AppComponent,
+		TableComponent,
+		TableSelect,
+		DateFormatPipe,
+		DateFilterComponent,
+		IsNullComponent,
+		InputFilterComponent
+	],
 	imports: [
 		BrowserModule,
 		HttpClientModule,
@@ -28,7 +39,8 @@ import { DateFormatPipe } from './dateFormatPipe/date-format.pipe';
 		MatTableModule,
 		MomentModule,
 		MatDatepickerModule,
-		MatNativeDateModule
+		MatNativeDateModule,
+		FormsModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]
