@@ -28,7 +28,5 @@ export class TableComponent implements OnInit {
 
 	queryByBoolean(value) {
 		let input = '';
-
-		console.log(value)
 	}
 }

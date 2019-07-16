@@ -9,13 +9,13 @@
 	    			[data-map]="dataMap" 
 	    			[query-data-subject]="queryDataSubject">		
 	    		</app-input-filter>
-	    		<select [hidden]="dataType[col] !== 'boolean'" (change)="queryByBoolean($event.target.value)">
-				    <option 
-				    	*ngFor="let order of [{display: '', value: ''}, {display: 'Yes', value: true}, {display: 'No', value: false}];"
-				    	bindValue="value">
-				      {{order.display}}
-				    </option>
-			    </select>
+	    		<app-boolean-filter 
+	    			*ngIf="dataType[col] === 'boolean'" 
+	    			[column]="col" 
+	    			[data-map]="dataMap" 
+	    			[query-data-subject]="queryDataSubject">
+	    				
+	    		</app-boolean-filter>
 	    	<app-is-null 
 	    	    *ngIf="dataType[col] !== 'date'"
 	    		[column]="col" 

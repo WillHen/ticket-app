@@ -1,0 +1,7 @@
+
+<select (change)="queryByBoolean($event.target.value)">
+    <option 
+    	*ngFor="let order of [{display: '', value: ''}, {display: 'Yes', value: true}, {display: 'No', value: false}];" value="{{order.value}}">
+      {{order.display}}
+    </option>
+</select>

@@ -19,6 +19,7 @@ import { DateFormatPipe } from './dateFormatPipe/date-format.pipe';
 import { DateFilterComponent } from './filters/date-filter/date-filter.component';
 import { IsNullComponent } from './filters/is-null/is-null.component';
 import { InputFilterComponent } from './filters/input-filter/input-filter.component';
+import { BooleanFilterComponent } from './filters/boolean-filter/boolean-filter.component';
 
 @NgModule({
 	declarations: [
@@ -28,7 +29,8 @@ import { InputFilterComponent } from './filters/input-filter/input-filter.compon
 		DateFormatPipe,
 		DateFilterComponent,
 		IsNullComponent,
-		InputFilterComponent
+		InputFilterComponent,
+		BooleanFilterComponent
 	],
 	imports: [
 		BrowserModule,
