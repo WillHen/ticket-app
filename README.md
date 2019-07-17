@@ -84,4 +84,10 @@ For client tests from dir /client/ticket-app run
 ```ng test```
 
 
+## App Instructions
+
+![Select a data set (users, organizations or tickets) and type in an input to filter.]
+(https://i.imgur.com/4CUKtzD.png)
+
+
 
