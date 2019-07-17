@@ -7,6 +7,6 @@ module.exports = {
 		if (dataValue === undefined && userInput === '@isNull@') {
 			return true;
 		}
-		return !userInput.length ? true : dataValue.some(element => element.includes(userInput));
+		return !userInput.length ? true : dataValue.some(element => element.toLowerCase().includes(userInput.toLowerCase()));
 	}
 }
